@@ -30,7 +30,6 @@ public class Corrida {
             }
         }
 		System.out.println("----------Lista dos carros----------");
-
 		imprimir(carro);
 		System.out.println("----------Lista das motos----------");
 		imprimir(moto);

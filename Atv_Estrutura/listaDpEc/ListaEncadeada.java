@@ -26,10 +26,7 @@ public class ListaEncadeada {
         novoNo.setProximo(primeiroNo);
         primeiroNo = novoNo;
     } else {
-        No noAtual = primeiroNo;
-        while (noAtual.getProximo() != null && elemento.compareTo(noAtual.getProximo().getElemento()) >= 0) {
-            noAtual = noAtual.getProximo();
-        }
+        No noAtual = percorrerLista(elemento);
         novoNo.setProximo(noAtual.getProximo());
         noAtual.setProximo(novoNo);
     }
@@ -38,8 +35,9 @@ public class ListaEncadeada {
     }
     tamanho++;
     }
-
-        public No pesquisarPosicao(int posicao) {
+    
+    
+    public No pesquisarPosicao(int posicao) {
         if (posicao < 0 || posicao >= tamanho) {
             return null; // Posição inválida
         }
@@ -50,14 +48,50 @@ public class ListaEncadeada {
         }
         return noAtual;
     }
+    public void remover(int elemento) {
+
+    	if(elemento == primeiroNo.getElemento())removerInicio();
+    	else if	(elemento == ultimoNo.getElemento())removerFim();
+    	else {
+    		No noAtual = percorrerLista(elemento);
+    		if(noAtual !=null) removerMeio(noAtual);
+    		else { 
+    			System.out.println("Numero invalido");
+    			tamanho ++;
+    		}
+    	}
+    	tamanho--;
+    }
+    private void removerInicio() {
+    	primeiroNo.getProximo().setAnterior(null);
+    	primeiroNo= primeiroNo.getProximo();
+		
+	}
+    private void removerFim() {
+    	ultimoNo.getAnterior().setProximo(null);;
+    	ultimoNo = ultimoNo.getAnterior();
+    }
+    private void removerMeio(No noAtual) {
+    	No prox= noAtual.getProximo();
+    	No ant= noAtual.getAnterior();
+    	prox.setAnterior(ant);
+    	ant.setProximo(prox);
+    }
         
+    private No percorrerLista(Integer elemento) {
+    	No noAtual = primeiroNo;
+		while (noAtual.getProximo() != null && elemento.compareTo(noAtual.getProximo().getElemento()) >= 0) {
+            noAtual = noAtual.getProximo();
+        }
+    	return noAtual;
+    }
     public void limparLista() {
         primeiroNo = null;
         ultimoNo = null;
         tamanho = 0;
     }
 
-        public void percorrerLista() {
+        public void imprimirLista() {
         No noAuxiliar = primeiroNo;
         while (noAuxiliar != null) {
             System.out.println(noAuxiliar.getElemento());

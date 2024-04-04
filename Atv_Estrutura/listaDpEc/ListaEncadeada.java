@@ -22,19 +22,31 @@ public class ListaEncadeada {
     public void inserirOrdenado(Integer elemento) {
     No novoNo = new No(elemento);
 
-    if (tamanho == 0 || elemento.compareTo(primeiroNo.getElemento()) < 0) {
-        novoNo.setProximo(primeiroNo);
-        primeiroNo = novoNo;
-    } else {
-        No noAtual = percorrerLista(elemento);
-        novoNo.setProximo(noAtual.getProximo());
-        noAtual.setProximo(novoNo);
+    if (tamanho == 0 || elemento < primeiroNo.getElemento()) 
+    	adicionarInicio(novoNo);
+    else if (elemento> ultimoNo.getElemento())
+    	adicionarFim(novoNo);
+    else {
+        novoNo=percorrerLista(elemento);
+        adicionarMeio(novoNo);
     }
-    if (novoNo.getProximo() == null) {
-        ultimoNo = novoNo;
-    }
+
     tamanho++;
     }
+    private void adicionarFim(No atual) {
+    	atual.setAnterior(ultimoNo);
+    	ultimoNo=atual;
+    }
+    private void adicionarInicio(No atual) {
+    	atual.setProximo(ultimoNo);
+    	primeiroNo=atual;
+    	if (tamanho==0)ultimoNo=atual;
+    }
+    
+    private void adicionarMeio(No atual) {
+	
+    }
+
     
     
     public No pesquisarPosicao(int posicao) {

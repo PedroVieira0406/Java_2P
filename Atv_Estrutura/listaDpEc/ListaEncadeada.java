@@ -24,13 +24,12 @@ public class ListaEncadeada {
 
     if (tamanho == 0 || elemento < primeiroNo.getElemento()) 
     	adicionarInicio(novoNo);
-    else if (elemento> ultimoNo.getElemento())
+    if (elemento> ultimoNo.getElemento())
     	adicionarFim(novoNo);
     else {
-        novoNo=percorrerLista(elemento);
-        adicionarMeio(novoNo);
+        No noAtual=percorrerLista(elemento);
+        adicionarMeio(novoNo, noAtual);
     }
-
     tamanho++;
     }
     private void adicionarFim(No atual) {
@@ -43,8 +42,9 @@ public class ListaEncadeada {
     	if (tamanho==0)ultimoNo=atual;
     }
     
-    private void adicionarMeio(No atual) {
-	
+    private void adicionarMeio(No novoNo,No noAtual) {
+	novoNo.setProximo(noAtual.getProximo());
+        noAtual.setProximo(novoNo);
     }
 
     

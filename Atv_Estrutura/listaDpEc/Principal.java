@@ -26,7 +26,7 @@ public class Principal {
                     break;
                 case 3:
                     System.out.println("Elementos na lista:");
-                    lista.percorrerLista();
+                    lista.imprimirLista();
                     break;
                 case 4:
                     lista.limparLista();
@@ -42,7 +42,12 @@ public class Principal {
                         System.out.println("Posição inválida.");
                     }
                     break;
-               
+                case 6:
+                	System.out.print("Digite o elemento a ser removido: ");
+                    elemento = scanner.nextInt();
+                    lista.remover(elemento);
+                    System.out.println("Elemento inserido na lista.");
+                    break;
                 case 0:
                     System.out.println("Encerrando o programa.");
                     break;
@@ -62,6 +67,7 @@ public class Principal {
         System.out.println("3. Imprimir a lista");
         System.out.println("4. Limpar a lista");
         System.out.println("5. Pesquisar nó na posição");
+        System.out.println("6. Remover da lista o nó:");
         System.out.println("0. Sair");
         System.out.println();
         System.out.print("Escolha uma opção: ");
